@@ -1,5 +1,5 @@
-# Sistema de Agendamentos
-[Explique em 1 ou 2 frases o que o sistema faz. Ex: Sistema web para agendar atendimentos, que impede dois clientes no mesmo dia e horário.]
+## Sistema de Agendamentos
+Sistema Web de agendamento de atendimentos feito com Django, que impede dois clientes no mesmo dia e horário.
 ## Tecnologias
 - Python
 - Django
