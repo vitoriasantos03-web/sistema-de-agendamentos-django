@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Novo Agendamento</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background: #eef2f7;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        .card {
+            background: #fff;
+            width: 100%;
+            max-width: 480px;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            border: 1px solid #e5e9f0;
+        }
+        .header {
+            background: #111827;
+            color: white;
+            padding: 24px 28px;
+        }
+        .header h1 { font-size: 22px; }
+        .header p { font-size: 13px; color: #9ca3af; margin-top: 4px; }
+        .form-body { padding: 24px 28px 28px; }
+        label {
+            display: block;
+            font-size: 13px;
+            font-weight: 700;
+            color: #374151;
+            margin: 16px 0 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+        label:first-child { margin-top: 0; }
+        input, select {
+            width: 100%;
+            padding: 12px 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 10px;
+            font-size: 15px;
+            background: #f9fafb;
+            outline: none;
+        }
+        input:focus, select:focus {
+            border-color: #111827;
+            background: white;
+        }
+        .linha {
+            display: flex;
+            gap: 12px;
+        }
+        .linha > div { flex: 1; }
+        .btn {
+            width: 100%;
+            margin-top: 24px;
+            padding: 14px;
+            background: #111827;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+        .btn:hover { background: #000; }
+        .voltar {
+            display: block;
+            text-align: center;
+            margin-top: 16px;
+            color: #6b7280;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        .dica { font-size: 12px; color: #9ca3af; margin-top: 5px; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <div class="header">
+            <h1>Novo Agendamento</h1>
+            <p>Preencha os dados para reservar o horário</p>
+        </div>
+        <div class="form-body">
+            <form method="POST">
+                {% csrf_token %}
+                <label>Nome do Cliente</label>
+                <input type="text" name="nome_cliente" placeholder="Ex: Iago Silva" required>
+
+                <div class="linha">
+                    <div>
+                        <label>Dia</label>
+                        <input type="date" name="data" lang="pt-BR" required>
+                        <p class="dica">Formato: dia/mês/ano</p>
+                    </div>
+                    <div>
+                        <label>Horário</label>
+                        <input type="time" name="horario" step="1800" required>
+                        <p class="dica">Horário de 24h - Ex: 18:00</p>
+                    </div>
+                </div>
+
+                <label>Serviço</label>
+                <select name="servico" required>
+                    <option value="">Selecione o serviço...</option>
+                    <option value="Corte de Cabelo">Corte de Cabelo</option>
+                    <option value="Barba">Barba</option>
+                    <option value="Limpeza de Pele">Limpeza de Pele</option>
+                    <option value="Manicure">Manicure</option>
+                    <option value="Pedicure">Pedicure</option>
+                    <option value="Sobrancelha">Sobrancelha</option>
+                </select>
+
+                <button type="submit" class="btn">Confirmar Agendamento</button>
+            </form>
+            <a href="{% url 'listar_agendamentos' %}" class="voltar">← Voltar para agendamentos</a>
+        </div>
+    </div>
+</body>
+</html>
